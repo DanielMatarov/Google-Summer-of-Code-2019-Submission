@@ -16,6 +16,7 @@ AudioStreamTransitioner can crossfade between different streams, or "clips". Bec
 ## How to use the feature
 
 I have made two video tutorials, explaining how to use each class, and I have also created documentation explaining what each GDScript function does, which can be found in the docs help in the editor. 
+
 [AudioStreamPlaylist](https://youtu.be/RKMyb0WuBMc)
 [AudioStreamTransitioner](https://youtu.be/1aNV5DjJu58)
 
