@@ -25,7 +25,8 @@ I have made two video tutorials, explaining how to use each class, and I have al
 [AudioStreamTransitioner](https://youtu.be/1aNV5DjJu58)
 
 ## Challenges encountered 
-One of the first challenges I faced was to figure out how the initial code was going to work. With some help from my mentor who explained a lot of the basics to me I managed to get a very basic version of Playlist working, however it had the problem of a memory leak, which took me a while to fix. As mentioned in the previous two progress reports, the issue was that the preview generator for audio streams was trying to create an infinite preview and that would take up all of my computer's RAM. The issue was solved through communicating with a developer interested in the feature who asked me why does Playlist loop indefinitely, at which point I realized somethig was not right. More info on this can be found in Progress report #2. 
+One of the first challenges I faced was to figure out how the initial code was going to work. With some help from my mentor who explained a lot of the basics to me I managed to get a very basic version of Playlist working, however it had the problem of a memory leak, which took me a while to fix. As mentioned in the previous two progress reports, the issue was that the preview generator for audio streams was trying to create an infinite preview and that would take up all of my computer's RAM. The issue was solved through communicating with a developer interested in the feature who asked me why does Playlist loop indefinitely, at which point I realized somethig was not right. More info on this can be found in [Progress report #2](https://godotengine.org/article/gsoc-2019-progress-report-2).
+
 Another big challenge was figuring out the logic for transitioner, and then adding functionalities for a transition clip in the logic. This was probably the biggest piece of mixing logic I have ever written and it was a very interesting challenge to do it properly and also debug any issues with it.
 One of the problems with this was that I could hear a click when fades were happening. Figuring out the source took some back and forth in the dev chat and it was noticed that what was happening was extra frames were being processed - https://imgur.com/a/egL7Gua
 I realised that the reason this was happening was because, at the end of a transition, the samples left to process would be smaller than the buffer size, which is what the mix logic uses as block size. 
@@ -58,6 +59,7 @@ The way I fixed it was by adding a a check to see if the remaining transition sa
 
 ## What's next 
 Ideally, I would like to merge the project with Godot's master branch and for it to become the go-to feature for music implementation. I plan to keep working on the two classes and try and take feedback from other users on what could be improved. I think the video tutorials I have made for this will show people how they currently work and hopefully receive useful input on how I can make them better. 
+
 Some other things I would like to add is a counter which waits until a single beat is finished until it starts transitioning, which would make more sense than a transition starting immediately when it is triggered. I also think that it would be good to change the way crossfading works. Currently, the volume values of the fading streams are not connected to each other
 
     float fade_out_start_volume = 1.0 - float(fade_out_samples_total - fade_out_samples) / fade_out_samples_total;
