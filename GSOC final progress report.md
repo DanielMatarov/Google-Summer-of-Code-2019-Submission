@@ -8,8 +8,11 @@
 ## Project Overview
 The aim of this project was to implement an interactive music feature to Godot Engine, which consists of adding tempo and beat functinalities to existing AudioStreams and adding two new classes, called AudioStreamPlaylist and AudioStreamTransitioner. 
 The new BPM functionalities work by setting a BPM to an AudioStream, and transitioner and playlist are able to count the samples with accuracy, the number of which depending on how many beats the user has input, either on a stream in Playlist, or fades in Transitioner. 
+
 AudioStreamPlaylist can play multiple AudioStreams in a sequence, based on their tempo and beats. The class has options for looping and shuffling the clips, and can take up to 64 clips. 
+
 The way the code works is by calculating the lenght in samples of a stream's beat count, based on their or the playlist's default tempo, and processes them in small blocks. When the frames are all processed, the next stream's samples are calculated, and the process starts again, then the previous stream has a brief and unnoticable fade out while the next stream starts. This allows for accurate time keeping and seamles change in clips. 
+
 AudioStreamTransitioner can crossfade between different streams, or "clips". Because a transition can be activated at any time, clips will loop indefinitely until a transition is triggered. Each transition has times for fading out and fading in, based on beats. The lenght in samples of the fades is determined by the user input beats and the BPM of the two streams, meaning the fading out stream's fade in samples is calculated through its own bpm, and the fading in stream's samples are calculated through the bpm of that stream. Optionality for a transition clip also exists, which allows for a transitionary clip to be played in between the current and previous clip. The transition clip fades in while the previous fades out, plays through its samples, based either on it's length or beats, and finally fades out as the new clip fades in. 
 
 
